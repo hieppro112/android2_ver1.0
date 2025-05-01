@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#73D4E1"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".quen_mk_blank">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:background="#2196F3"
+        android:scaleType="centerInside"
+        android:src="@drawable/img" />
+
+    <TextView
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:text="QUÊN MẬT KHẨU"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <!-- Mật khẩu hiện tại -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp">
+
+        <EditText
+            android:id="@+id/etForgotPassUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_tb"
+            android:gravity="left|center"
+            android:hint="@string/hint_login_admin"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingEnd="48dp" />
+
+        <ImageView
+            android:id="@+id/ivToggleOldPassword"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignEnd="@id/etForgotPassUsers"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_eye" />
+    </RelativeLayout>
+
+
+    <!-- Nhập lại mật khẩu -->
+
+
+    <Button
+        android:id="@+id/btnAcceptUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#2196F3"
+        android:padding="12dp"
+        android:text=" Xác Nhận"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+
+
+</LinearLayout>

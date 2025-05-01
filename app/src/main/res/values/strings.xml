@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="app_name">Xe Xin</string>
+    <string name="title_change_password">ĐỔI MẬT KHẨU</string>
+    <string name="hint_old_password">Mật khẩu hiện tại</string>
+    <string name="hint_new_password">Mật khẩu mới</string>
+    <string name="hint_login_admin">Email</string>
+    <string name="hint_login_pass_admin">Mật Khẩu</string>
+    <string name="hint_register_pass_admin">Mật Khẩu</string>
+    <string name="hint_register_reenter_pass_admin">Nhập lại Mật Khẩu</string>
+    <string name="hint_register_name_admin">Họ và Tên</string>
+    <string name="hint_confirm_password">Nhập lại mật khẩu mới</string>
+    <string name="btn_update_password">Cập nhật mật khẩu</string>
+    <string name="btn_logout">Đăng xuất</string>
+
+
+    <string name="tv_forgot_password"><font color="#3366FF"><u>Quên mật khẩu</u></font></string>
+    <string name="tv_return_users"><font color="#3366FF"><u>Return Users</u></font></string>
+    <string name="tv_have_account"><font color="#3366FF"><u>Tôi đã có tài khoản</u></font></string>
+    <string name="tv_no_have_account"><font color="#3366FF"><u>Tôi chx có tài khoản </u></font></string>
+    <string name="tv_have_account_admin"><font color="#3366FF"><u>Tôi đã có tk admin </u></font></string>
+    <string name="tv_no_have_account_admin"><font color="#3366FF"><u>Tôi chx có tk admin </u></font></string>
+
+    <string name="tv_admintor"><font color="#3366FF"><u>Admintor </u></font></string>
+
+    tv_have_account_admin
+
+    <string-array name="brand_array">
+        <item>Honda</item>
+        <item>Suzuki</item>
+        <item>SYM</item>
+    </string-array>
+
+</resources>

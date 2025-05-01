@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".info_moto_blank">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6EC3F7"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_back_chitiet" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="9"
+            android:scaleType="centerInside"
+            android:src="@drawable/img" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+            <!--            img san pham -->
+            <ViewFlipper
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3">
+
+                <ImageView
+                    android:id="@+id/img_moto_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_moto" />
+
+                <ImageView
+                    android:id="@+id/img_moto_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/imag_moto2" />
+
+                <ImageView
+                    android:id="@+id/img_moto_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_moto3" />
+            </ViewFlipper>
+            <!--            so luong san pham-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="so luong: "
+                android:textStyle="bold"
+                android:layout_marginEnd="25dp"
+                android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/soluong_moto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="25dp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!--            gia tien va yeu thich san pham-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/giaban_moto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="999.999.999"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/yeuthich_moto"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_heart_chitiet" />
+
+
+            </LinearLayout>
+
+            <!--            tieu de san pham -->
+            <TextView
+                android:id="@+id/title_moto"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="50dp"
+                android:text="MOTO Z1000 đã qua sử dụng còn mới 100%"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <!--            chi tiet mo ta-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="chi tiết:"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/mota_moto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-Kawasaki Z1000 là một chiếc mô tô phân khối lớn thuộc dòng naked bike nổi tiếng của hãng Kawasaki, được giới thiệu lần đầu vào năm 2003 và nhanh chóng trở thành biểu tượng trong phân khúc này.​"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="20dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tình trạng: "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/tinhtrang_moto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Đã qua sử dụng"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loại xe: "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/loai_moto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="YAMAHA"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NXS: "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/nxs_moto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2018"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!--    buttom navigation-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3"
+            android:background="@color/yellow"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_chat_chietitet" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3"
+            android:background="@color/blue"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_chat_chiet" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3"
+            android:background="@color/xam"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_call_chietiet" />
+    </LinearLayout>
+
+    <!--    help app-->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:padding="30dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/hinh_tron_help"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#73D4E1"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".dangKy_user_blank">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:background="#2196F3"
+        android:scaleType="centerInside"
+        android:src="@drawable/img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:text="ĐĂNG KÝ"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <!-- Họ và tên -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/etNameRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_tb"
+            android:gravity="left|center"
+            android:hint="@string/hint_register_name_admin"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingEnd="48dp" />
+
+    </RelativeLayout>
+    <!-- Mật khẩu hiện tại -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/etRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_tb"
+            android:gravity="left|center"
+            android:hint="@string/hint_login_admin"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingEnd="48dp" />
+
+    </RelativeLayout>
+
+
+    <!-- Nhập lại mật khẩu -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/etConfirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_tb"
+            android:gravity="left|center"
+            android:hint="@string/hint_login_pass_admin"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:paddingEnd="48dp" />
+
+
+        <ImageView
+            android:id="@+id/ivToggleConfirmPassword"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignEnd="@id/etConfirmPass"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_eye" />
+    </RelativeLayout>
+    <!-- Nhập lại mật khẩu -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/etReEnterPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_tb"
+            android:gravity="left|center"
+            android:hint="@string/hint_register_reenter_pass_admin"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:paddingEnd="48dp" />
+
+
+        <ImageView
+            android:id="@+id/ivToggleConfirmPasswordNew"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignEnd="@id/etReEnterPass"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_eye" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnAcceptUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#2196F3"
+        android:padding="12dp"
+        android:text=" Xác Nhận"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+
+
+
+    <TextView
+        android:id="@+id/tvHaveNoAccountAdmin"
+        android:layout_width="141dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="1dp"
+
+        android:outlineAmbientShadowColor="@color/black"
+        android:text="@string/tv_have_account"
+        android:textColor="#354043"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

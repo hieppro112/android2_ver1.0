@@ -1,0 +1,23 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lớp 1: Hình tròn làm nền -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/blue"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/white"/>
+            <size
+                android:width="100dp"
+                android:height="100dp"/>
+        </shape>
+    </item>
+
+    <!-- Lớp 2: Hình ảnh đè lên hình tròn -->
+    <item
+        android:drawable="@drawable/ic_help_chitiet"
+        android:gravity="center"
+        android:left="50dp"
+        android:right="50dp"
+        android:top="50dp"
+        android:bottom="50dp"/>
+</layer-list>
