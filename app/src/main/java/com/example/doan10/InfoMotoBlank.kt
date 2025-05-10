@@ -10,15 +10,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.doan10.data.post
+import com.example.doan10.data.postGhim
 import com.example.doan10.databinding.InfoMotoFrBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class InfoMotoBlank : Fragment() {
     private lateinit var binding:InfoMotoFrBinding
     private val agrs:InfoMotoBlankArgs by navArgs()
+
+    private lateinit var firebaseRef:DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +40,12 @@ class InfoMotoBlank : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        firebaseRef=FirebaseDatabase.getInstance().getReference("PostGhim")
         setvalue()
+        yeuthich_moto()
+        laydulieu()
+
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.home_screen_blank)
         }
@@ -106,5 +120,40 @@ class InfoMotoBlank : Fragment() {
             }
             startActivity(intent)
         }
+    }
+
+    fun yeuthich_moto(){
+        binding.yeuthichMoto.setOnClickListener {
+            val user = "hiep1"
+            firebaseRef.child(user).setValue(postGhim(user,agrs.idPost))
+                .addOnCompleteListener {
+                    Toast.makeText(requireContext(),"Yeu thich tin",Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(),"Yeu thich Fail",Toast.LENGTH_SHORT).show()
+
+                }
+
+
+        }
+    }
+
+    fun laydulieu(){
+        var a:String ="";
+        val idcuthe = "hiep1";
+        firebaseRef.child(idcuthe).addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snap: DataSnapshot) {
+                if (snap.exists()){
+                    a=snap.child("user_id_post").getValue(String::class.java)!!
+                    Log.d("value hiep", " value = $a: ")
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.d("value hiep", "Failk: ")
+            }
+
+        })
+
     }
 }

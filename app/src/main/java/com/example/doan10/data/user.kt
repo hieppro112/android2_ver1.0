@@ -5,8 +5,8 @@ class user(var id:String="",
     var pass:String="",
     var sdt:String="",
     var email:String="",
+           var Url_img:String="",
     var role:Int=0,
-    var Url_img:String="",
     ) {
 
 }

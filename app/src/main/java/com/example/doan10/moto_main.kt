@@ -36,7 +36,7 @@ class moto_main : AppCompatActivity() {
 //        var email:String="",
 //        var role:Int=0,
 //        var Url_img:String="",
-        firebaseRef = FirebaseDatabase.getInstance().getReference("Users")
+        firebaseRef = FirebaseDatabase.getInstance().getReference("Users-thuan")
         firebaseRefPost = FirebaseDatabase.getInstance().getReference("Post")
         firebaseRefCar = FirebaseDatabase.getInstance().getReference("Hangxe")
 
@@ -76,12 +76,12 @@ class moto_main : AppCompatActivity() {
 
     private fun importDL() {
         val id_us = firebaseRef.push().key!!
-//        firebaseRef.child(id_us).setValue(user(id_us,"hieppro1223","123123","0898415185","lehiep@gmail.com",1,"https://firebasestorage.googleapis.com/v0/b/crudfirebase-30e96.firebasestorage.app/o/Images%2F-OPi3dqAKlKcfnbxZQcd?alt=media&token=ec5c9d80-5f05-4532-a497-6bc186d3ced7"))
+//        firebaseRef.child(id_us).setValue(user(id_us,"hieppro1223","123123","0898415185","lehiep@gmail.com","",1))
 //            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
 //            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
 
         val id_post = firebaseRefPost.push().key!!
-        firebaseRefPost.child(id_post).setValue(post(id_post,"","","",0,"moi",2020,999.999,3,false,"Thanh Ly moto R1000"
+        firebaseRefPost.child(id_post).setValue(post(id_post,"","","",0,"moi",2020,999.999,3,false,"Xe BMW Tu Thai"
         ,"dfsdfsdfgfdgoiuoiretklj" +
                     "fdgsdjfgklsdjfglsk" +
                     "dsfgk",id_us,"lkl"))

@@ -26,6 +26,8 @@ class home_screen_blank : Fragment() {
     private lateinit var firebaseRefPost:DatabaseReference
 
 
+    private lateinit var adapterPost:ProductAdapter
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,9 +39,9 @@ class home_screen_blank : Fragment() {
         firebaseRefPost=FirebaseDatabase.getInstance().getReference("Post")
         listPost= arrayListOf()
 
-        var adapterPost = ProductAdapter(listPost)
+        adapterPost = ProductAdapter(listPost)
         binding.productRecyclerView.adapter=adapterPost
-        binding.productRecyclerView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        binding.productRecyclerView.layoutManager=LinearLayoutManager(context)
 
         fetchData()
 
@@ -61,24 +63,25 @@ class home_screen_blank : Fragment() {
     private fun fetchData() {
         firebaseRefPost.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snap: DataSnapshot) {
-                listPost.clear()
+                listPost.isEmpty()
                 if(snap.exists()){
-                    Log.d("fech data", "passs: ")
                     for (item in snap.children){
                         Log.d("fech data", "passs1: ")
                         var item_post = item.getValue(post::class.java)
-                        Log.d("fech data", "pass2: ")
+                        Log.d("fech data", "passs1:  $item_post")
                         listPost.add(item_post!!)
                     }
+                    binding.productRecyclerView.adapter?.notifyDataSetChanged()
+                    Log.d("fech data", "${listPost.size}: ")
                 }
                 else{
                     Log.d("fech data", "fail: ")
                 }
-                binding.productRecyclerView.adapter?.notifyDataSetChanged()
+
             }
 
             override fun onCancelled(p0: DatabaseError) {
-
+                Log.d("fech data", "fail: ")
             }
 
         })

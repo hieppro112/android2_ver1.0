@@ -124,4 +124,9 @@
         android:name="com.example.doan10.notifyScreen"
         android:label="notify_screen_layout"
         tools:layout="@layout/notify_screen_layout" />
+    <fragment
+        android:id="@+id/ghimPostMain"
+        android:name="com.example.doan10.ghimPostMain"
+        android:label="ghim_post_layout"
+        tools:layout="@layout/ghim_post_layout" />
 </navigation>

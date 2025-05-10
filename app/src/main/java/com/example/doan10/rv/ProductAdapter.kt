@@ -52,5 +52,5 @@ class ProductAdapter(val ds: List<post>) : RecyclerView.Adapter<ProductAdapter.V
         }
     }
 
-    override fun getItemCount() = ds.size
+    override fun getItemCount(): Int= ds.size
 }
