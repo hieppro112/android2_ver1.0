@@ -1,5 +1,7 @@
 package com.example.doan10
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
@@ -21,7 +23,7 @@ class moto_main : AppCompatActivity() {
     private lateinit var firebaseRef:DatabaseReference
     private lateinit var firebaseRefPost:DatabaseReference
     private lateinit var firebaseRefCar:DatabaseReference
-
+    private val REQ=99
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,29 +41,60 @@ class moto_main : AppCompatActivity() {
         firebaseRefCar = FirebaseDatabase.getInstance().getReference("Hangxe")
 
 //        importDL()
+
+
+        if (checkPermission(Manifest.permission.CALL_PHONE)){
+            Log.d("hieppro", "1: ")
+        }
+        else{
+            requestPermissions(arrayOf<String>(Manifest.permission.CALL_PHONE),REQ)
+        }
+    }
+
+    private fun checkPermission(permission: String):Boolean {
+        val check =checkSelfPermission(permission)
+        return check== PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+        deviceId: Int
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
+        if (requestCode==REQ&& permissions.size==grantResults.size){
+            for (item in grantResults){
+                if (item!=PackageManager.PERMISSION_GRANTED){
+                    return
+                }
+            }
+            Log.d("hieppro", "Chot: ")
+        }
+
     }
 
     private fun importDL() {
         val id_us = firebaseRef.push().key!!
-        firebaseRef.child(id_us).setValue(user(id_us,"hieppro1223","123123","lehiep@gmail.com",1,"https://firebasestorage.googleapis.com/v0/b/crudfirebase-30e96.firebasestorage.app/o/Images%2F-OPi3dqAKlKcfnbxZQcd?alt=media&token=ec5c9d80-5f05-4532-a497-6bc186d3ced7"))
-            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
-            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
+//        firebaseRef.child(id_us).setValue(user(id_us,"hieppro1223","123123","0898415185","lehiep@gmail.com",1,"https://firebasestorage.googleapis.com/v0/b/crudfirebase-30e96.firebasestorage.app/o/Images%2F-OPi3dqAKlKcfnbxZQcd?alt=media&token=ec5c9d80-5f05-4532-a497-6bc186d3ced7"))
+//            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
+//            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
 
         val id_post = firebaseRefPost.push().key!!
         firebaseRefPost.child(id_post).setValue(post(id_post,"","","",0,"moi",2020,999.999,3,false,"Thanh Ly moto R1000"
         ,"dfsdfsdfgfdgoiuoiretklj" +
                     "fdgsdjfgklsdjfglsk" +
-                    "dsfgk",id_us,3))
+                    "dsfgk",id_us,"lkl"))
             .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
             .addOnFailureListener { Log.d("do du lieu", "fail: ") }
 
-        var listxe = ArrayList<hangxe>()
-        var id_xe =""
-        listxe.add(hangxe(id_xe,"yamaha"))
-        listxe.add(hangxe(id_xe,"Honda"))
-        listxe.add(hangxe(id_xe,"Suzuki"))
-        listxe.add(hangxe(id_xe,"Amada"))
-
+//        var listxe = ArrayList<hangxe>()
+//        var id_xe =""
+//        listxe.add(hangxe(id_xe,"yamaha"))
+//        listxe.add(hangxe(id_xe,"Honda"))
+//        listxe.add(hangxe(id_xe,"Suzuki"))
+//        listxe.add(hangxe(id_xe,"Amada"))
+//
 //        for (item in listxe){
 //            id_xe=firebaseRefCar.push().key!!
 //            var xe =hangxe(id_xe,item.name)

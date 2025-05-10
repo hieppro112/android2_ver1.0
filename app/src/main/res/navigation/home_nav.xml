@@ -19,15 +19,48 @@
         <action
             android:id="@+id/action_home_screen_blank_to_profile_user_blank"
             app:destination="@id/profile_user_blank" />
+        <action
+            android:id="@+id/action_home_screen_blank_to_notifyScreen"
+            app:destination="@id/notifyScreen" />
     </fragment>
     <fragment
         android:id="@+id/info_moto_blank"
-        android:name="com.example.doan10.info_moto_blank"
+        android:name="com.example.doan10.InfoMotoBlank"
         android:label="info_moto_fr"
         tools:layout="@layout/info_moto_fr" >
         <action
             android:id="@+id/action_info_moto_blank_to_home_screen_blank"
             app:destination="@id/home_screen_blank" />
+        <argument
+            android:name="id_post"
+            app:argType="string" />
+        <argument
+            android:name="Url_img"
+            app:argType="string" />
+        <argument
+            android:name="post_soluong"
+            app:argType="integer" />
+        <argument
+            android:name="post_giaban"
+            app:argType="string" />
+        <argument
+            android:name="ghim"
+            app:argType="boolean" />
+        <argument android:name="post_tieude"
+            app:argType="string" />
+        <argument
+            android:name="post_mota"
+            app:argType="string" />
+        <argument
+            android:name="post_tinhtrang"
+            app:argType="integer" />
+        <argument android:name="post_loaixe"
+            app:argType="string" />
+        <argument android:name="post_nsx"
+            app:argType="integer" />
+        <argument
+            android:name="sdt"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/dangNhap_user"
@@ -86,4 +119,9 @@
             android:id="@+id/action_add_moto_screen_to_home_screen_blank"
             app:destination="@id/home_screen_blank" />
     </fragment>
+    <fragment
+        android:id="@+id/notifyScreen"
+        android:name="com.example.doan10.notifyScreen"
+        android:label="notify_screen_layout"
+        tools:layout="@layout/notify_screen_layout" />
 </navigation>

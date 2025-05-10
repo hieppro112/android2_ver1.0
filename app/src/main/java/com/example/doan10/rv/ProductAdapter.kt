@@ -5,27 +5,52 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
+import androidx.navigation.Navigation
+import androidx.navigation.Navigator
 import androidx.recyclerview.widget.RecyclerView
-import com.example.doan10.item.Product
 import com.example.doan10.R
+import com.example.doan10.data.post
+import com.example.doan10.databinding.ItemProductBinding
+import com.example.doan10.home_screen_blankDirections
 
 
-class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(val ds: List<post>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.product_title)
-        val imageView: ImageView = view.findViewById(R.id.product_image)
+     inner class ViewHolder(val binding:ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
-        return ViewHolder(view)
+        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = products[position].title
-        holder.imageView.setImageResource(products[position].imageResId)
+       val items = ds[position]
+        with(holder.binding){
+//            productImage.setImageURI(items.Url.toUri())
+            productTitle.text=items.tieude
+
+            productItem.setOnClickListener {
+//                val action = home_screen_blankDirections.actionHomeScreenBlankToInfoMotoBlank();
+                val action = home_screen_blankDirections.actionHomeScreenBlankToInfoMotoBlank(
+                    items.id,
+                    items.Url,
+                    items.soluong,
+                    items.giaban.toString(), // Thử truyền String tĩnh
+                    items.ghim,
+                    items.tieude,
+                    items.mota,
+                    items.tinhtrang,
+                    items.loaixe,
+                    items.nsx,
+                    items.sdt
+                )
+                Navigation.findNavController(holder.itemView).navigate(action)
+            }
+
+        }
     }
 
-    override fun getItemCount() = products.size
+    override fun getItemCount() = ds.size
 }
