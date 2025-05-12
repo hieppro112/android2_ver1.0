@@ -56,9 +56,6 @@ class home_screen_blank : Fragment() {
         binding.btnNotify.setOnClickListener {
             findNavController().navigate(R.id.notifyScreen)
         }
-
-
-
     }
 
     private fun fetchData() {

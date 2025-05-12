@@ -39,7 +39,7 @@
             android:background="@drawable/custom_tb"
             android:gravity="left|center"
             android:hint="@string/hint_register_name_admin"
-            android:inputType="textPassword"
+            android:inputType="textPersonName"
             android:padding="10dp"
             android:paddingEnd="48dp" />
 
@@ -51,13 +51,13 @@
         android:layout_marginBottom="20dp">
 
         <EditText
-            android:id="@+id/etRegister"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_tb"
             android:gravity="left|center"
             android:hint="@string/hint_login_admin"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
             android:paddingEnd="48dp" />
 
@@ -135,7 +135,7 @@
 
 
     <TextView
-        android:id="@+id/tvHaveNoAccountAdmin"
+        android:id="@+id/tvHaveAccount"
         android:layout_width="141dp"
         android:layout_height="20dp"
         android:layout_marginLeft="250dp"
