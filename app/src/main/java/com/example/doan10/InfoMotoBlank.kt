@@ -44,10 +44,9 @@ class InfoMotoBlank : Fragment() {
         firebaseRef=FirebaseDatabase.getInstance().getReference("PostGhim")
         setvalue()
         yeuthich_moto()
-        laydulieu()
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.home_screen_blank)
+            findNavController().popBackStack()
         }
 //        var moto_byte =  post("123","","","",1,"Honda",2020,123123.132123,5,true,"ban gap xe moi","àlàklàlkẩuởiiơiủu")
 //        apply_dulieu(moto_byte)
@@ -124,14 +123,16 @@ class InfoMotoBlank : Fragment() {
 
     fun yeuthich_moto(){
         binding.yeuthichMoto.setOnClickListener {
-            val user = "hiep1"
-            firebaseRef.child(user).setValue(postGhim(user,agrs.idPost))
+            laydulieu()
+            val user = "hiep2"
+            val id = firebaseRef.push().key!!
+
+            firebaseRef.child(user).child(agrs.idPost).setValue(0)
                 .addOnCompleteListener {
                     Toast.makeText(requireContext(),"Yeu thich tin",Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     Toast.makeText(requireContext(),"Yeu thich Fail",Toast.LENGTH_SHORT).show()
-
                 }
 
 
@@ -140,12 +141,26 @@ class InfoMotoBlank : Fragment() {
 
     fun laydulieu(){
         var a:String ="";
-        val idcuthe = "hiep1";
+        Log.d("value_hiep", " value = $a: ")
+        val idcuthe = "hiep2";
         firebaseRef.child(idcuthe).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snap: DataSnapshot) {
+                var listkey = ArrayList<String>()
                 if (snap.exists()){
-                    a=snap.child("user_id_post").getValue(String::class.java)!!
-                    Log.d("value hiep", " value = $a: ")
+                    for (item in snap.children){
+                        var a = item.key
+                        a?.let {
+                            listkey.add(a.toString())
+                        }
+                    }
+
+                    for (item in listkey)
+                    {
+                        Log.d("value_hiep", "item = $item: ")
+                    }
+                }
+                else{
+                    Log.d("value_hiep", " value = null: ")
                 }
             }
 

@@ -61,6 +61,9 @@
         <argument
             android:name="sdt"
             app:argType="string" />
+        <action
+            android:id="@+id/action_info_moto_blank_to_ghimPostMain"
+            app:destination="@id/ghimPostMain" />
     </fragment>
     <fragment
         android:id="@+id/dangNhap_user"
@@ -128,5 +131,9 @@
         android:id="@+id/ghimPostMain"
         android:name="com.example.doan10.ghimPostMain"
         android:label="ghim_post_layout"
-        tools:layout="@layout/ghim_post_layout" />
+        tools:layout="@layout/ghim_post_layout" >
+        <action
+            android:id="@+id/action_ghimPostMain_to_info_moto_blank"
+            app:destination="@id/info_moto_blank" />
+    </fragment>
 </navigation>

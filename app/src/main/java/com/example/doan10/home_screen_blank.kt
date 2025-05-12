@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlin.math.log
 
 
 class home_screen_blank : Fragment() {
@@ -64,19 +65,19 @@ class home_screen_blank : Fragment() {
         firebaseRefPost.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snap: DataSnapshot) {
                 listPost.isEmpty()
-                if(snap.exists()){
+                if (snap.exists()){
                     for (item in snap.children){
-                        Log.d("fech data", "passs1: ")
-                        var item_post = item.getValue(post::class.java)
-                        Log.d("fech data", "passs1:  $item_post")
-                        listPost.add(item_post!!)
+                        var duyet = item.child("duyet").getValue(Int::class.java)
+                        if (duyet==2){
+                            item?.let {
+                                var post = it.getValue(post::class.java)
+                                listPost.add(post!!)
+                            }
+                        }
                     }
                     binding.productRecyclerView.adapter?.notifyDataSetChanged()
-                    Log.d("fech data", "${listPost.size}: ")
                 }
-                else{
-                    Log.d("fech data", "fail: ")
-                }
+
 
             }
 
