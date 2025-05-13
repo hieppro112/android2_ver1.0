@@ -109,7 +109,7 @@ class profile_user_blank : Fragment() {
             }
         }
         binding.tvTroGiup.setOnClickListener {
-            checkQuyenGoi()
+            openGoi()
         }
     }
 
@@ -324,23 +324,14 @@ class profile_user_blank : Fragment() {
             Log.e("NavigationError", "Lỗi navigation: ${e.message}")
         }
     }
-    private fun checkQuyenGoi(){
-        if (
-            requireContext().checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED
-
-        )else{
-            yeuCauQuyen.launch(Manifest.permission.CALL_PHONE)
-        }
-    }
     private fun openGoi(){
         val phone = "0898430927"
-        val intent  = Intent(Intent.ACTION_CALL).apply {
-            data = Uri.parse("tel:$phone")
-        }
-        try {
+        binding.tvTroGiup.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                setData(Uri.parse("tel:$phone"))
+            }
             startActivity(intent)
-        }catch (e: Exception){
-            Toast.makeText(requireContext(), "Lỗi: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+
     }
 }
