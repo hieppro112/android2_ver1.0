@@ -54,7 +54,7 @@ class AdapterghimPost(val ds:ArrayList<post>):RecyclerView.Adapter<AdapterghimPo
             layoutPostGhim.setOnClickListener {
                 val action = ghimPostMainDirections.actionGhimPostMainToInfoMotoBlank(
                     itemPost.id,
-                    itemPost.Url,
+                    itemPost.Url3,
                     itemPost.soluong,
                     itemPost.giaban.toString(), // Thử truyền String tĩnh
                     itemPost.ghim,
@@ -62,8 +62,11 @@ class AdapterghimPost(val ds:ArrayList<post>):RecyclerView.Adapter<AdapterghimPo
                     itemPost.mota,
                     itemPost.tinhtrang,
                     itemPost.loaixe,
-                    itemPost.nsx,
-                    itemPost.sdt
+                    itemPost.namsx,
+                    itemPost.sdt,
+                    itemPost.nsx.toString(),
+                    itemPost.Url.toString(),
+                    itemPost.Url2.toString(),
                 )
                 Navigation.findNavController(holder.itemView).navigate(action)
             }

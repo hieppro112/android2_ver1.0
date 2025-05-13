@@ -41,7 +41,7 @@ class ghimPostMain : Fragment() {
         // Inflate the layout for this fragment
 
         firebasePostGhim = FirebaseDatabase.getInstance().getReference("PostGhim").child("$user")
-        firebasePost=FirebaseDatabase.getInstance().getReference("Post")
+        firebasePost=FirebaseDatabase.getInstance().getReference("Post-main")
         binding = GhimPostLayoutBinding.inflate(inflater,container,false)
         return binding.root
     }

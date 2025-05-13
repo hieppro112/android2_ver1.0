@@ -2,13 +2,18 @@ package com.example.doan10
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.doan10.data.lay_UserID
 import com.example.doan10.data.user
 import com.example.doan10.databinding.DangnhapUserLayoutBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +27,8 @@ class dangNhap_user : Fragment() {
     private lateinit var binding:DangnhapUserLayoutBinding
     private lateinit var firebaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
+
+    private val layUserID:lay_UserID by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,6 +95,7 @@ class dangNhap_user : Fragment() {
                                     // Điều hướng theo role
                                     if (role == 0) {
                                         Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                                        truyenID(email)
                                         findNavController().navigate(R.id.home_screen_blank)
                                     }
                                     else {
@@ -107,4 +115,50 @@ class dangNhap_user : Fragment() {
                 }
             }
     }
+
+
+    private fun truyenID(id:String){
+        var a:String=""
+        val firetest = FirebaseDatabase.getInstance().getReference("Users")
+        firetest.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snap: DataSnapshot) {
+                if (snap.exists()){
+                    Log.d("run test", "snapo co du lieu : ")
+                    for (item in snap.children){
+                        item?.let {
+                            Log.d("run test", "item = ${item.child("email").getValue(String::class.java)} ")
+                            if (item.child("email").getValue(String::class.java)==id){
+                                a=item.key!!.toString()
+                                Log.d("run test", "a = $a: ")
+                                layUserID.user_ID=a
+                            }
+
+
+//                            for (i in item.children){
+//                                Log.d("run test", "gia tri trong item con $i: ")
+//
+//                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
+
+//        val acAddpost = dangNhap_userDirections.actionDangNhapUserToAddMotoScreen(
+//            id.toString()
+//        )
+//        val acXemPost = dangNhap_userDirections.actionDangNhapUserToXemLaiBaiDangBlank(
+//            id.toString()
+//        )
+    }
+
+
 }

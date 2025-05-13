@@ -15,7 +15,7 @@ import com.example.doan10.databinding.ItemProductBinding
 import com.example.doan10.home_screen_blankDirections
 
 
-class ProductAdapter(val ds: List<post>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(var ds: List<post>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
      inner class ViewHolder(val binding:ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
     }
@@ -43,8 +43,11 @@ class ProductAdapter(val ds: List<post>) : RecyclerView.Adapter<ProductAdapter.V
                     items.mota,
                     items.tinhtrang,
                     items.loaixe,
+                    items.namsx,
+                    items.sdt,
                     items.nsx,
-                    items.sdt
+                    items.Url2.toString(),
+                    items.Url3.toString(),
                 )
                 Navigation.findNavController(holder.itemView).navigate(action)
             }
@@ -53,4 +56,9 @@ class ProductAdapter(val ds: List<post>) : RecyclerView.Adapter<ProductAdapter.V
     }
 
     override fun getItemCount(): Int= ds.size
+    //kiet
+    fun updateData(newList: List<post>) {
+        ds = newList
+        notifyDataSetChanged()
+    }
 }

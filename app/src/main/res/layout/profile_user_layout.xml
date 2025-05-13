@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,12 +20,12 @@
             android:background="@color/blue"
             android:src="@drawable/img" />
 
-            <ImageView
-                android:id="@+id/imgAvatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_profile" />
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_profile" />
 
         <TextView
             android:id="@+id/tvUserName"
@@ -38,22 +37,28 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp" />
 
-
+        <TextView
+            android:id="@+id/tvXemBaiViet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ Bài viết đã đăng"
+            android:textSize="20dp"
+            android:padding="12dp"
+            android:layout_marginTop="24dp" />
         <TextView
             android:id="@+id/tvSavedPosts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="📌 Tin đã lưu"
             android:textSize="20dp"
-            android:padding="12dp"
-            android:layout_marginTop="24dp" />
+            android:padding="12dp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#EEEEEE"
+            android:background="@color/xam"
             android:padding="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
@@ -78,22 +83,20 @@
                     android:layout_height="30dp"
                     android:src="@drawable/ic_tick_sucses"
                     />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="2"
-                                android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:text=" Đã duyệt: "
-                                android:layout_marginTop="8dp" />
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text=" Đã duyệt: "
+                    android:layout_marginTop="8dp" />
                 <TextView
                     android:id="@+id/tv_daDuyet"
                     android:layout_width="0dp"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:text=" 3 "
+                    android:text="  "
                     android:layout_marginTop="8dp" />
             </LinearLayout>
 
@@ -119,12 +122,12 @@
                     android:layout_marginTop="8dp" />
 
                 <TextView
-                    android:id="@+id/tv_daduyet"
+                    android:id="@+id/tv_doiduyet"
                     android:layout_width="0dp"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:text=" 2 "
+                    android:text="  "
                     android:layout_marginTop="8dp" />
             </LinearLayout>
 
@@ -155,7 +158,7 @@
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:text=" 4 "
+                    android:text="  "
                     android:layout_marginTop="8dp" />
             </LinearLayout>
 
@@ -172,7 +175,7 @@
             android:padding="12dp"
             android:layout_marginTop="16dp" />
 
-        <!-- Trợ giúp -->
+
         <TextView
             android:id="@+id/tv_troGiup"
             android:layout_width="match_parent"
@@ -194,4 +197,5 @@
             android:layout_marginTop="24dp" />
 
     </LinearLayout>
+
 </ScrollView>

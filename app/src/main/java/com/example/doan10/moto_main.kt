@@ -80,13 +80,13 @@ class moto_main : AppCompatActivity() {
 //            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
 //            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
 
-        val id_post = firebaseRefPost.push().key!!
-        firebaseRefPost.child(id_post).setValue(post(id_post,"","","",0,"moi",2020,999.999,3,false,"Xe BMW Tu Thai"
-        ,"dfsdfsdfgfdgoiuoiretklj" +
-                    "fdgsdjfgklsdjfglsk" +
-                    "dsfgk",id_us,"lkl"))
-            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
-            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
+//        val id_post = firebaseRefPost.push().key!!
+//        firebaseRefPost.child(id_post).setValue(post(id_post,"","","",0,"moi",2020,999.999,3,false,"Xe BMW Tu Thai"
+//        ,"dfsdfsdfgfdgoiuoiretklj" +
+//                    "fdgsdjfgklsdjfglsk" +
+//                    "dsfgk",id_us,"lkl"))
+//            .addOnCompleteListener { Log.d("do du lieu", "passs: ") }
+//            .addOnFailureListener { Log.d("do du lieu", "fail: ") }
 
 //        var listxe = ArrayList<hangxe>()
 //        var id_xe =""

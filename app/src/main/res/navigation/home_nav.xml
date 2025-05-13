@@ -64,6 +64,15 @@
         <action
             android:id="@+id/action_info_moto_blank_to_ghimPostMain"
             app:destination="@id/ghimPostMain" />
+        <argument
+            android:name="nhasx"
+            app:argType="string" />
+        <argument
+            android:name="Url_img2"
+            app:argType="string" />
+        <argument
+            android:name="Url_img3"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/dangNhap_user"
@@ -79,6 +88,12 @@
         <action
             android:id="@+id/action_dangNhap_user_to_quen_mk_bank"
             app:destination="@id/quen_mk_bank" />
+        <action
+            android:id="@+id/action_dangNhap_user_to_xem_lai_bai_dang_blank"
+            app:destination="@id/xem_lai_bai_dang_blank" />
+        <action
+            android:id="@+id/action_dangNhap_user_to_add_moto_screen"
+            app:destination="@id/add_moto_screen" />
     </fragment>
     <fragment
         android:id="@+id/dangKy_user_blank"
@@ -121,6 +136,9 @@
         <action
             android:id="@+id/action_add_moto_screen_to_home_screen_blank"
             app:destination="@id/home_screen_blank" />
+        <argument
+            android:name="user_id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/notifyScreen"
@@ -136,4 +154,18 @@
             android:id="@+id/action_ghimPostMain_to_info_moto_blank"
             app:destination="@id/info_moto_blank" />
     </fragment>
+    <fragment
+        android:id="@+id/xem_lai_bai_dang_blank"
+        android:name="com.example.doan10.xem_lai_bai_dang_blank"
+        android:label="fragment_xem_lai_bai_dang_blank"
+        tools:layout="@layout/xem_lai_bai_dang_layout" >
+        <argument
+            android:name="id_user"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/doiMatKhau_blank"
+        android:name="com.example.doan10.doiMatKhau_blank"
+        android:label="doi_mat_khau_layout"
+        tools:layout="@layout/doi_mat_khau_layout" />
 </navigation>

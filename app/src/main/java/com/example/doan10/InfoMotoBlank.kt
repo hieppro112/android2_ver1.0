@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.doan10.data.post
 import com.example.doan10.data.postGhim
 import com.example.doan10.databinding.InfoMotoFrBinding
@@ -40,6 +41,7 @@ class InfoMotoBlank : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        chuyenanh()
 
         firebaseRef=FirebaseDatabase.getInstance().getReference("PostGhim")
         setvalue()
@@ -54,9 +56,14 @@ class InfoMotoBlank : Fragment() {
 
     private fun setvalue() {
         binding.apply {
+
+//            imgMoto1.setImageResource(R.drawable.error)
+//            imgMoto2.setImageResource(R.drawable.imag_moto2)
+//            imgMoto3.setImageResource(R.drawable.img_moto3)
             var ghim:Boolean = agrs.ghim
             var id = agrs.idPost
             val sdt = agrs.sdt
+            txtNsx.text = agrs.nhasx
             soluongMoto.setText(agrs.postSoluong.toString())
             giabanMoto.setText(agrs.postGiaban)
             titleMoto.setText(agrs.postTieude)
@@ -72,9 +79,9 @@ class InfoMotoBlank : Fragment() {
         }
     }
     fun apply_dulieu(moto: post){
-        binding.imgMoto1.setImageResource(R.drawable.img_moto)
-        binding.imgMoto2.setImageResource(R.drawable.imag_moto2)
-        binding.imgMoto3.setImageResource(R.drawable.img_moto3)
+//        binding.imgMoto1.setImageResource(R.drawable.ic_chat_chiet)
+//        binding.imgMoto2.setImageResource(R.drawable.imag_moto2)
+//        binding.imgMoto3.setImageResource(R.drawable.img_moto3)
         binding.soluongMoto.text = moto.soluong.toString()
         binding.giabanMoto.text=moto.giaban.toString()
 
@@ -169,6 +176,39 @@ class InfoMotoBlank : Fragment() {
             }
 
         })
+
+    }
+
+    fun chuyenanh(){
+        binding.flipperInfoMoto.flipInterval=3000
+        binding.flipperInfoMoto.isAutoStart=true
+        binding.flipperInfoMoto.startFlipping()
+
+        // thuc hien các hình ảnh đem về và thay đổi
+        Log.d("link img", "${agrs.UrlImg} ")
+        Log.d("link img", "${agrs.UrlImg2} ")
+        Log.d("link img", "${agrs.UrlImg3} ")
+
+        agrs.UrlImg?.let {
+            Glide.with(this)
+                .load(it)
+                .centerCrop()
+                .fitCenter()
+                .error(R.drawable.error)
+                .into(binding.imgMoto1)
+        }
+        agrs.UrlImg2?.let {
+            Glide.with(this)
+                .load(it)
+                .error(R.drawable.error)
+                .into(binding.imgMoto2)
+        }
+        agrs.UrlImg3?.let {
+            Glide.with(this)
+                .load(it)
+                .error(R.drawable.error)
+                .into(binding.imgMoto3)
+        }
 
     }
 }

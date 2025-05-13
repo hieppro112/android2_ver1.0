@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,19 +26,20 @@ class home_screen_blank : Fragment() {
     private lateinit var binding:HomeScreenFrBinding
     private lateinit var listPost:ArrayList<post>
     private lateinit var firebaseRefPost:DatabaseReference
+    private lateinit var adapterPost: ProductAdapter
 
 
-    private lateinit var adapterPost:ProductAdapter
 
-
+    private var currentKeyword: String = ""
+    private var currentCategory: String = "tất cả"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val danhmucxe = listOf("tất cả","xe đã qua sử dụng", "xe mới","xe không chính chủ");
-        val adapter  =ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,danhmucxe)
+        val tinhTrangOptions = listOf("Tất cả", "Xe mới", "Đã qua sử dụng");
+        val adapter  =ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,tinhTrangOptions)
         binding.spDanhmucxe.adapter=adapter
 
-        firebaseRefPost=FirebaseDatabase.getInstance().getReference("Post")
+        firebaseRefPost=FirebaseDatabase.getInstance().getReference("Post-main")
         listPost= arrayListOf()
 
         adapterPost = ProductAdapter(listPost)
@@ -56,6 +58,29 @@ class home_screen_blank : Fragment() {
         binding.btnNotify.setOnClickListener {
             findNavController().navigate(R.id.notifyScreen)
         }
+        binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                currentKeyword = query.orEmpty()
+                filterData()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                currentKeyword = newText.orEmpty()
+                filterData()
+                return true
+            }
+        })
+
+        // Lọc theo danh mục
+        binding.spDanhmucxe.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                currentCategory = parent.getItemAtPosition(position).toString()
+                filterData()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
     }
 
     private fun fetchData() {
@@ -72,10 +97,8 @@ class home_screen_blank : Fragment() {
                             }
                         }
                     }
-                    binding.productRecyclerView.adapter?.notifyDataSetChanged()
+                    filterData()
                 }
-
-
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -93,6 +116,21 @@ class home_screen_blank : Fragment() {
         binding=HomeScreenFrBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
+    private fun filterData() {
+        val filteredList = listPost.filter { post ->
+            val matchCategory = when (currentCategory) {
+                "Tất cả" -> true
+                "Xe mới" -> post.tinhtrang == 0
+                "Đã qua sử dụng" -> post.tinhtrang == 1
+                else -> true
+            }
 
+            val matchKeyword = currentKeyword.isEmpty() || post.tieude.contains(currentKeyword, ignoreCase = true)
+
+            matchCategory && matchKeyword
+        }
+
+        adapterPost.updateData(filteredList)
+    }
 
 }
