@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.doan10.R
 import com.example.doan10.data.post
 import com.example.doan10.data.postGhim
 import com.example.doan10.databinding.ItemPostGhimBinding
@@ -30,6 +32,7 @@ class AdapterghimPost(val ds:ArrayList<post>):RecyclerView.Adapter<AdapterghimPo
         val itemPost = ds[pos]
 
         with(holder.binding){
+
             tvGhimPost.text=itemPost.tieude
 
             layoutPostGhim.setOnLongClickListener {
@@ -48,6 +51,33 @@ class AdapterghimPost(val ds:ArrayList<post>):RecyclerView.Adapter<AdapterghimPo
                     }
                     .show()
                 return@setOnLongClickListener true
+            }
+
+            if (itemPost.Url.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(itemPost.Url)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(imgGhimPost)
+            }
+            else if (itemPost.Url2.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(itemPost.Url2)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(imgGhimPost)
+            }
+            else if (itemPost.Url3.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(itemPost.Url3)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(imgGhimPost)
+            }
+            else {
+                Glide.with(holder.itemView)
+                    .load(R.drawable.error)
+                    .into(imgGhimPost)
             }
 
             //khii nhan vao item

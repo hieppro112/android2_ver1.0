@@ -49,6 +49,28 @@
             android:textSize="30dp"
             android:gravity="center"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="số lượng:"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/tv_soluong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_postGhim"
             android:layout_width="match_parent"

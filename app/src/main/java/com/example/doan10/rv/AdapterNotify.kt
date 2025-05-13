@@ -28,6 +28,7 @@ class AdapterNotify(val ds:List<notify>):RecyclerView.Adapter<AdapterNotify.View
 
             titleNotiItem.text=itemNoti.title
             contentNotiItem.text=itemNoti.content
+
         }
     }
 }

@@ -75,6 +75,7 @@ class ghimPostMain : Fragment() {
                                 Log.d("ds_ghim", "$item: ")
 //                            }
                             binding.rvPostGhim.adapter?.notifyDataSetChanged()
+                            binding.tvSoluong.text = listGhim.size.toString()
                         }
                     }
 

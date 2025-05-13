@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.navigation.Navigation
 import androidx.navigation.Navigator
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.doan10.R
 import com.example.doan10.data.post
 import com.example.doan10.databinding.ItemProductBinding
@@ -30,6 +31,35 @@ class ProductAdapter(var ds: List<post>) : RecyclerView.Adapter<ProductAdapter.V
         with(holder.binding){
 //            productImage.setImageURI(items.Url.toUri())
             productTitle.text=items.tieude
+
+            if (items.Url.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(items.Url)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(productImage)
+            }
+            else if (items.Url2.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(items.Url2)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(productImage)
+            }
+            else if (items.Url3.isNotEmpty()){
+                Glide.with(holder.itemView)
+                    .load(items.Url3)
+                    .centerCrop()
+                    .error(R.drawable.error)
+                    .into(productImage)
+            }
+            else {
+                Glide.with(holder.itemView)
+                    .load(R.drawable.error)
+                    .into(productImage)
+            }
+
+
 
             productItem.setOnClickListener {
 //                val action = home_screen_blankDirections.actionHomeScreenBlankToInfoMotoBlank();

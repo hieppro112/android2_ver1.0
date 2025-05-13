@@ -40,7 +40,7 @@
             android:background="@drawable/custom_tb"
             android:gravity="left|center"
             android:hint="@string/hint_login_admin"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
             android:paddingEnd="48dp" />
 
@@ -55,7 +55,7 @@
     </RelativeLayout>
 
 
-    <!-- Nhập lại mật khẩu -->
+
 
 
     <Button
@@ -69,6 +69,16 @@
         android:text=" Xác Nhận"
         android:textColor="#FFFFFF"
         android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:paddingTop="16dp" />
 
 
 </LinearLayout>
