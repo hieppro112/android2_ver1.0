@@ -35,6 +35,7 @@ class home_screen_blank : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        chuyenanh()
         val tinhTrangOptions = listOf("Tất cả", "Xe mới", "Đã qua sử dụng");
         val adapter  =ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,tinhTrangOptions)
         binding.spDanhmucxe.adapter=adapter
@@ -57,6 +58,9 @@ class home_screen_blank : Fragment() {
         }
         binding.btnNotify.setOnClickListener {
             findNavController().navigate(R.id.notifyScreen)
+        }
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.home_screen_blank)
         }
         binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -131,6 +135,28 @@ class home_screen_blank : Fragment() {
         }
 
         adapterPost.updateData(filteredList)
+    }
+
+    fun chuyenanh(){
+        binding.bannerHome.flipInterval=3000
+        binding.bannerHome.isAutoStart=true
+        binding.bannerHome.startFlipping()
+
+        binding.btnHome.setOnClickListener {
+            Log.d("banner", "view: ")
+
+        }
+
+        binding.banner1.setOnClickListener {
+            Log.d("banner", "banner1: ")
+        }
+        binding.banner2.setOnClickListener {
+            Log.d("banner", "banner2: ")
+        }
+        binding.banner3.setOnClickListener {
+            Log.d("banner", "banner3: ")
+        }
+
     }
 
 }

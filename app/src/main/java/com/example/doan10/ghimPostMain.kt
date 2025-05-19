@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil.Callback
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.doan10.data.lay_UserID
 import com.example.doan10.data.post
+import com.example.doan10.data.user
 import com.example.doan10.databinding.GhimPostLayoutBinding
 import com.example.doan10.databinding.ItemPostGhimBinding
 import com.example.doan10.rv.AdapterghimPost
@@ -25,7 +28,8 @@ class ghimPostMain : Fragment() {
     private lateinit var listId:ArrayList<String>
     private lateinit var listGhim:ArrayList<post>
 
-    private val user="hiep2"
+//    private val layid:lay_UserID by activityViewModels()
+    private val layUserID:lay_UserID by activityViewModels()
 
     private lateinit var firebasePostGhim:DatabaseReference
     private lateinit var firebasePost:DatabaseReference
@@ -39,6 +43,8 @@ class ghimPostMain : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val user:String = layUserID.user_ID.toString()?:""
+        Log.d("tesst id du lieu", "id = ${user}: ")
 
         firebasePostGhim = FirebaseDatabase.getInstance().getReference("PostGhim").child("$user")
         firebasePost=FirebaseDatabase.getInstance().getReference("Post-main")
@@ -55,7 +61,7 @@ class ghimPostMain : Fragment() {
             findNavController().popBackStack()
         }
 
-        adapter= AdapterghimPost(listGhim)
+        adapter= AdapterghimPost(listGhim,layUserID)
         binding.rvPostGhim.adapter=adapter
         binding.rvPostGhim.layoutManager=LinearLayoutManager(requireContext())
 
@@ -101,9 +107,7 @@ class ghimPostMain : Fragment() {
                 if (snap.exists()){
                     for (item in snap.children){
                         var a = item.key
-
                         a?.let {
-
                             listId.add(it)
                         }
                     }

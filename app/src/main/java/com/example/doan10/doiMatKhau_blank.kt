@@ -43,6 +43,9 @@ class doiMatKhau_blank : Fragment() {
         binding.btnDoiMatKhau.setOnClickListener {
             doiMatKhau()
         }
+        binding.btnThoat.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
     }
 

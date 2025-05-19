@@ -84,6 +84,9 @@ class profile_user_blank : Fragment() {
         binding.tvSavedPosts.setOnClickListener {
             findNavController().navigate(R.id.ghimPostMain)
         }
+        binding.titleImg.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         loadUserName()
         loadAvatar(user.uid)

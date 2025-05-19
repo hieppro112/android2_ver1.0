@@ -1,6 +1,7 @@
 package com.example.doan10
 
 import android.os.Bundle
+import android.text.InputType
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class dangKy_user_blank : Fragment() {
     private lateinit var binding:DangKyUserLayoutBinding
     private lateinit var firebaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private var isVisible = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,16 +37,23 @@ class dangKy_user_blank : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.dang_ky_user_layout, container, false)
         binding = DangKyUserLayoutBinding.inflate(inflater, container, false)
         firebaseRef = FirebaseDatabase.getInstance().getReference("Users")
         auth = FirebaseAuth.getInstance()
         binding.btnAcceptUsers.setOnClickListener {
             pushData()
         }
+        binding.ivToggleConfirmPassword.setOnClickListener {
+            EyeConfirm()
+        }
+        binding.ivToggleConfirmPasswordNew.setOnClickListener{
+            EyeConfirmNew()
+        }
         return binding.root
     }
+
+
+
     private fun pushData() {
         val userName = binding.etNameRegister.text.toString().trim()
         val email = binding.etEmail.text.toString().trim()
@@ -86,59 +95,79 @@ class dangKy_user_blank : Fragment() {
         }
 
         if(pass == rePass){
-            // Đăng ký với Firebase Authentication
-            // Kiểm tra username đã tồn tại chưa
-            val query = firebaseRef.orderByChild("username").equalTo(userName)
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        // Username đã tồn tại
-                        binding.etNameRegister.error = "Username đã tồn tại. Vui lòng chọn tên khác."
-                        binding.etNameRegister.requestFocus()
-                    } else {
-                        // Username chưa tồn tại, tiến hành đăng ký
-                        auth.createUserWithEmailAndPassword(email, pass)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val userId = auth.currentUser?.uid
-                                    if (userId != null) {
-                                        val userData = hashMapOf(
-                                            "id" to userId,
-                                            "username" to userName,
-                                            "email" to email,
-                                            "role" to 0,
-                                            "sdt" to "",
-                                            "url_img" to ""
-                                        )
-                                        firebaseRef.child(userId).setValue(userData)
-                                            .addOnSuccessListener {
-                                                Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show()
+            auth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val userId = auth.currentUser?.uid
+                        if (userId != null) {
+                            val userData = hashMapOf(
+                                "id" to userId,
+                                "username" to userName,
+                                "email" to email,
+                                "pass" to pass,
+                                "role" to 0,
+                                "sdt" to "",
+                                "url_img" to ""
+                            )
+                            firebaseRef.child(userId).setValue(userData)
+                                .addOnSuccessListener {
+                                    // Gửi email xác thực
+                                    val user = auth.currentUser
+                                    user?.sendEmailVerification()
+                                        ?.addOnCompleteListener { verificationTask ->
+                                            if (verificationTask.isSuccessful) {
+                                                Toast.makeText(context, "Đăng ký thành công. Vui lòng kiểm tra email để xác thực.", Toast.LENGTH_LONG).show()
+                                                // Hướng dẫn người dùng tiếp tục đăng nhập
                                                 findNavController().navigate(R.id.dangNhap_user)
+                                            } else {
+                                                Toast.makeText(context, "Lỗi gửi email xác thực: ${verificationTask.exception?.message}", Toast.LENGTH_SHORT).show()
                                             }
-                                            .addOnFailureListener {
-                                                Toast.makeText(context, "Lỗi lưu dữ liệu: ${it.message}", Toast.LENGTH_SHORT).show()
-                                            }
-                                    } else {
-                                        Toast.makeText(context, "Không lấy được thông tin người dùng", Toast.LENGTH_SHORT).show()
-                                    }
-                                } else {
-                                    val exception = task.exception
-                                    if (exception is FirebaseAuthUserCollisionException) {
-                                        binding.etEmail.error = "Email đã được sử dụng. Vui lòng dùng email khác."
-                                        binding.etEmail.requestFocus()
-                                    } else {
-                                        Toast.makeText(context, "Đăng ký thất bại: ${exception?.message}", Toast.LENGTH_SHORT).show()
-                                    }
+                                        }
                                 }
-                            }
+                                .addOnFailureListener {
+                                    Toast.makeText(context, "Lỗi lưu dữ liệu: ${it.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        } else {
+                            Toast.makeText(context, "Không lấy được thông tin người dùng", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        val exception = task.exception
+                        if (exception is FirebaseAuthUserCollisionException) {
+                            binding.etEmail.error = "Email đã được sử dụng. Vui lòng dùng email khác."
+                            binding.etEmail.requestFocus()
+                        } else {
+                            Toast.makeText(context, "Đăng ký thất bại: ${exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Lỗi kiểm tra username: ${error.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
         }
+    }
+
+    private fun EyeConfirm() {
+        if (isVisible) {
+            // Ẩn mật khẩu
+            binding.etConfirmPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.ivToggleConfirmPassword.setImageResource(R.drawable.ic_eye)
+        } else {
+            // Hiện mật khẩu
+            binding.etConfirmPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.ivToggleConfirmPassword.setImageResource(R.drawable.ic_eye_close)
+        }
+        isVisible = !isVisible
+        binding.etConfirmPass.setSelection(binding.etConfirmPass.text.length)
+    }
+    private fun EyeConfirmNew() {
+        if (isVisible) {
+            // Ẩn mật khẩu
+            binding.etReEnterPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.ivToggleConfirmPasswordNew.setImageResource(R.drawable.ic_eye)
+        } else {
+            // Hiện mật khẩu
+            binding.etReEnterPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.ivToggleConfirmPasswordNew.setImageResource(R.drawable.ic_eye_close)
+        }
+        isVisible = !isVisible
+        binding.etReEnterPass.setSelection(binding.etReEnterPass.text.length)
     }
 
 }

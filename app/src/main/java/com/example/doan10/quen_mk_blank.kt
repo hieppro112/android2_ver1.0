@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.doan10.databinding.QuenMkLayoutBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -44,8 +45,8 @@ class quen_mk_blank : Fragment() {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Đã gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context, "Đã gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.dangNhap_user)
                 } else {
                     val errorMessage = task.exception?.message ?: "Đã xảy ra lỗi"
                     Toast.makeText(context, "Không gửi được email: $errorMessage", Toast.LENGTH_SHORT).show()

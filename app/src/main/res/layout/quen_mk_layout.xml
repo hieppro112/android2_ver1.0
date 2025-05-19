@@ -43,20 +43,7 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:paddingEnd="48dp" />
-
-        <ImageView
-            android:id="@+id/ivToggleOldPassword"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignEnd="@id/etForgotPassUsers"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/ic_eye" />
     </RelativeLayout>
-
-
-
-
 
     <Button
         android:id="@+id/btnAcceptUsers"

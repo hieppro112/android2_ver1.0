@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:background="#6EC3F7"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:paddingTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,13 +51,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:queryHint="Tìm kiếm..." />
-
-        <ImageView
-            android:id="@+id/banner"
+        <ViewFlipper
+            android:id="@+id/banner_home"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_moto" />
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/banner1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/banner_moto" />
+
+            <ImageView
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/banner_2" />
+
+            <ImageView
+                android:id="@+id/banner3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/banner_3" />
+        </ViewFlipper>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +95,7 @@
 
             <Spinner
                 android:id="@+id/sp_danhmucxe"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 

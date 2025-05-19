@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="#6EC3F7"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:paddingTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/btn_back"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_back_chitiet" />
 
@@ -99,6 +99,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -117,12 +118,14 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_heart_chitiet" />
+                    android:src="@drawable/ic_heart_none" />
 
             </LinearLayout>
 
             <!--            tieu de san pham -->
             <TextView
+                android:paddingHorizontal="20dp"
+
                 android:id="@+id/title_moto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,6 +143,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:paddingHorizontal="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="chi tiết:"
@@ -149,6 +153,8 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:paddingHorizontal="20dp"
+
                     android:id="@+id/mota_moto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,6 +163,8 @@
                     android:textSize="18dp" />
 
                 <LinearLayout
+                    android:paddingHorizontal="20dp"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -179,6 +187,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingHorizontal="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -201,6 +210,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingHorizontal="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -223,6 +233,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingHorizontal="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"

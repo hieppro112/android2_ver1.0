@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -66,11 +67,14 @@ class xem_lai_bai_dang_blank : Fragment() {
             val tvNamsx = view.findViewById<TextView>(R.id.tvNamsx)
             val tvGiaban = view.findViewById<TextView>(R.id.tvGiaban)
             val ivImage = view.findViewById<ImageView>(R.id.ivImage)
+            val viewList = view.findViewById<ListView>(R.id.item_xemPost)
 
             tvTieude.text = post.tieude
             tvLoaixe.text = "Loại xe: ${post.loaixe}"
             tvNamsx.text = "Năm sản xuất: ${post.namsx}"
             tvGiaban.text = "Giá bán: ${post.giaban} VNĐ"
+
+
 
             // Hủy task cũ nếu có
             imageLoadTasks[position]?.cancel(true)
