@@ -76,6 +76,21 @@ class dangKy_user_blank : Fragment() {
                 return
             }
         }
+        // Kiểm tra username
+        if (userName.length > 30) {
+            binding.etNameRegister.error = "Tên người dùng không được vượt quá 30 ký tự"
+            binding.etNameRegister.requestFocus()
+            return
+        }
+
+        val usernamePattern = "^[a-zA-Z0-9_]+$".toRegex()
+        if (!usernamePattern.matches(userName)) {
+            binding.etNameRegister.error = "Tên người dùng không được chứa ký tự đặc biệt"
+            binding.etNameRegister.requestFocus()
+            return
+        }
+
+        
         // kt cau truc email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etEmail.error = "Email không hợp lệ"
