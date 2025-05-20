@@ -24,33 +24,49 @@ class quen_mk_blank : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = QuenMkLayoutBinding.inflate(inflater, container, false)
         firebaseRef = FirebaseDatabase.getInstance().getReference("Users")
         auth = FirebaseAuth.getInstance()
         binding.btnAcceptUsers.setOnClickListener {
             val email = binding.etForgotPassUsers.text.toString().trim()
-            getPasswordByEmail(email)
+            checEmail(email)
         }
         return binding.root
     }
-    private fun getPasswordByEmail(email: String) {
+    private fun checEmail(email: String) {
 
-        // kt cau truc email
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()) {
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etForgotPassUsers.error = "Email không hợp lệ"
-            binding.etForgotPassUsers.requestFocus()
             return
         }
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(context, "Đã gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.dangNhap_user)
-                } else {
-                    val errorMessage = task.exception?.message ?: "Đã xảy ra lỗi"
-                    Toast.makeText(context, "Không gửi được email: $errorMessage", Toast.LENGTH_SHORT).show()
+        firebaseRef.get().addOnSuccessListener { snapshot ->
+            // Duyet qua ds email trong node user
+            for (user in snapshot.children) {
+                val userEmail = user.child("email").value.toString()
+
+                // neu email = nhau
+                if (userEmail.equals(email, ignoreCase = true)) {
+                    val role = user.child("role").getValue(Int::class.java)
+                    //  user role = 0
+                    if (role == 0) {
+                        sendResetEmail(email)
+                        return@addOnSuccessListener
+                    }
                 }
+            }
+            Toast.makeText(context, "Email không tồn tại trong danh sách", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(context, "Lỗi kết nối cơ sở dữ liệu", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun sendResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Đã gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.dangNhap_user)
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Gửi email thất bại", Toast.LENGTH_SHORT).show()
             }
     }
 }

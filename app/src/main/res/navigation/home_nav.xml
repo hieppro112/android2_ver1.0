@@ -162,10 +162,25 @@
         <argument
             android:name="id_user"
             app:argType="string" />
+        <action
+            android:id="@+id/action_xem_lai_bai_dang_blank_to_sua_bai_danng_blank"
+            app:destination="@id/sua_bai_danng_blank" />
+        <action
+            android:id="@+id/action_xem_lai_bai_dang_blank_to_info_moto_blank"
+            app:destination="@id/info_moto_blank" />
     </fragment>
     <fragment
         android:id="@+id/doiMatKhau_blank"
         android:name="com.example.doan10.doiMatKhau_blank"
         android:label="doi_mat_khau_layout"
         tools:layout="@layout/doi_mat_khau_layout" />
+    <fragment
+        android:id="@+id/sua_bai_danng_blank"
+        android:name="com.example.doan10.sua_bai_dang_blank"
+        android:label="fragment_sua_bai_danng_blank"
+        tools:layout="@layout/sua_bai_dang_layout" >
+        <argument
+            android:name="postKey"
+            app:argType="string" />
+    </fragment>
 </navigation>

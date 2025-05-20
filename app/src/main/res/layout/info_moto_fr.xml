@@ -267,7 +267,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="9"
+        android:weightSum="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -280,14 +280,6 @@
             android:background="@color/yellow"
             android:scaleType="centerInside"
             android:src="@drawable/ic_chat_chietitet" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="3"
-            android:background="@color/blue"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_chat_chiet" />
 
         <ImageView
             android:id="@+id/item_btn_call"
