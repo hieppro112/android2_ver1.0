@@ -93,36 +93,34 @@ class dangNhap_user : Fragment() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     if (user != null) {
-                        //Kiểm tra xác minh email
                         if (user.isEmailVerified) {
-                            // Cập nhật email và pass vào Realtime Database khi đăng nhập
-                            val updates = mapOf(
-                                "email" to email,
-                                "pass" to pass
-                            )
-                            firebaseRef.child(user.uid).updateChildren(updates)
-                                .addOnSuccessListener {
-                                    firebaseRef.child(user.uid).get()
-                                        .addOnSuccessListener { dataSnapshot ->
-                                            if (dataSnapshot.exists()) {
-                                                val role = dataSnapshot.child("role").getValue(Int::class.java)
-                                                if (role == 0) {
+                            // Lay t.tin role de xac nhan user hay admin
+                            firebaseRef.child(user.uid).get()
+                                .addOnSuccessListener { dataSnapshot ->
+                                    if (dataSnapshot.exists()) {
+                                        val role = dataSnapshot.child("role").getValue(Int::class.java)
+                                        if (role == 0) {
+                                            // cap nhat vao user
+                                            val updates = mapOf(
+                                                "email" to email,
+                                                "pass" to pass
+                                            )
+                                            firebaseRef.child(user.uid).updateChildren(updates)
+                                                .addOnSuccessListener {
                                                     Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
                                                     truyenID(email)
                                                     findNavController().navigate(R.id.home_screen_blank)
-                                                } else {
-                                                    Toast.makeText(context, "Đây là tài khoản admin", Toast.LENGTH_SHORT).show()
                                                 }
-                                            } else {
-                                                Toast.makeText(context, "Không tìm thấy dữ liệu người dùng", Toast.LENGTH_SHORT).show()
-                                            }
+                                                .addOnFailureListener {
+                                                    Toast.makeText(context, "Lỗi khi cập nhật dữ liệu người dùng: ${it.message}", Toast.LENGTH_SHORT).show()
+                                                }
                                         }
-                                        .addOnFailureListener {
-                                            Toast.makeText(context, "Lỗi khi lấy dữ liệu người dùng: ${it.message}", Toast.LENGTH_SHORT).show()
-                                        }
+                                    } else {
+                                        Toast.makeText(context, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                                 .addOnFailureListener {
-                                    Toast.makeText(context, "Lỗi khi cập nhật dữ liệu người dùng: ${it.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Lỗi khi lấy dữ liệu người dùng: ${it.message}", Toast.LENGTH_SHORT).show()
                                 }
                         } else {
                             // Email chưa xác minh
@@ -149,7 +147,6 @@ class dangNhap_user : Fragment() {
                     }
                 }
             }
-
 
     }
 
