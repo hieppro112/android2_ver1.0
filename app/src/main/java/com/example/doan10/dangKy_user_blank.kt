@@ -97,8 +97,8 @@ class dangKy_user_blank : Fragment() {
             binding.etEmail.requestFocus()
             return
         }
-        if (pass.length < 6) {
-            binding.etConfirmPass.error = "Mật khẩu phải từ 6 ký tự"
+        if (pass.length < 6|| pass.length > 35) {
+            binding.etConfirmPass.error = "Mật khẩu phải từ 6 kí tự và bé hơn 35 kí tự"
             binding.etConfirmPass.requestFocus()
             return
         }
