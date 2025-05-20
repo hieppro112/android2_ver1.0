@@ -105,6 +105,7 @@ class dangKy_user_blank : Fragment() {
                                 "username" to userName,
                                 "email" to email,
                                 "pass" to pass,
+                                "role" to 0,
                                 "sdt" to "",
                                 "url_img" to ""
                             )
